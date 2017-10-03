@@ -1,4 +1,6 @@
 
+
+
 # Question 2:
 
 # A)
@@ -44,9 +46,56 @@ prob_25 <- dbinom(25, size=60, prob=0.5)
 
 prob_30 <- dbinom(30, size=60, prob=0.5)
 
-for(i in c(prob_20, prob_25, prob_30)) {
-  print(i)
+
+probabilities <- c(prob_20, prob_25, prob_30)
+
+
+for(probability in probabilities) {
+  print(probability)
 }
 
+
 # ii)
+
+sum <- 0
+for(i in 1:19) {
+  sum <- sum + dbinom(i, size=60, prob=0.5)
+}
+prob_less_20 <- sum
+prob_less_20
+
+prob_less_20 <- (1 - pbinom(20, size=60, prob=0.5, lower.tail = FALSE))
+prob_less_20
+
+# iii)
+
+
+prob_less_30 <- (1 - pbinom(30, size=60, prob=0.5, lower.tail = FALSE))
+prob_less_20 <- (1 - pbinom(20, size=60, prob=0.5, lower.tail = FALSE))
+
+prob_between <- prob_less_30 - prob_less_20
+prob_between
+
+#C) 
+#
+# Rand variable X has Poisson dist with mean 7:
+
+u <- 7
+
+#i) X less than 5
+
+prob <- ppois(5, lambda=7)
+prob
+
+#ii) X greater than 10 (strictly)
+
+prob <- (1 - ppois(10, lambda=7))
+prob
+
+#iii) X between 4 and 16
+
+prob <- ppois(16, lambda=7) - ppois(4, lambda=7)
+prob
+
+
 
