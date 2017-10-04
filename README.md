@@ -10,5 +10,5 @@
 
 ## Resources
 
-- [TryR](http://tryr.codeschool.com/)
+- [TryR R syntax/logic mini tutorial series](http://tryr.codeschool.com/)
 - [Tutorial on for loops in R](https://datascienceplus.com/how-to-write-the-loop-in-r/)
