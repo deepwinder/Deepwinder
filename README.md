@@ -7,3 +7,8 @@
 - [2nd Question Script](https://github.com/Addyvan/Statistical-Learning-A-2/blob/master/script.R)
 - [3rd Question Script]()
 - [4rth Question Script]()
+
+## Resources
+
+- [TryR](http://tryr.codeschool.com/)
+- [Tutorial on for loops in R](https://datascienceplus.com/how-to-write-the-loop-in-r/)
