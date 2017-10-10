@@ -24,10 +24,26 @@ prob_matrix <- function(n_red, n_green, m_red, m_green) {
     return(probability_matrix)
 }
 
-main <- function(n, m, k) {
+main <- function(n=5, m=6, k=3) {
+    n_red <- n
+    n_green <- n
+    m_red <- m
+    m_green <- m
     
-    test <- prob_matrix(n_red=n, n_green=n, m_red=m, m_green=m)
-    print(test)
+    target_val <- 2 # 2 reds
+    reds_so_far <- 0
+    for(i in 1:k) {
+        prob_matrix(n_red, n_green, m_red, m_green)
+        if(reds_so_far < target_val) {
+            reds_so_far <- reds_so_far + 1
+            n_red <- n_red - 1
+            m_red <- m_red - 1
+        } else {
+            n_green <- n_green - 1
+            m_green <- m_green -1
+        }
+    }
+    
 }
 
-main(5,5,2)
+main()
