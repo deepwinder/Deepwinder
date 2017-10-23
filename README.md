@@ -10,4 +10,4 @@
 - [Wikipedia Article on Joint probability distributions for question 3](https://en.wikipedia.org/wiki/Joint_probability_distribution)
 
 ##### General stats (Mostly for assignment 4)
--[Expected value of variance and mean proof](https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading5a.pdf)
+- [Expected value of variance and mean proof](https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading5a.pdf)
