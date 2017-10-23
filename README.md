@@ -1,15 +1,13 @@
-# Statistical Learning Assignment 2
-
-## Links
-
-- [1st Question data.csv file](https://github.com/Addyvan/Statistical-Learning-A-2/blob/master/data.csv)
-- [1st Assignment / 1st Question Script](https://github.com/Addyvan/Statistical-Learning-A-2/blob/master/A1-script.R)
-- [2nd Question Script](https://github.com/Addyvan/Statistical-Learning-A-2/blob/master/script.R)
-- [3rd Question Script]()
-- [4rth Question Script]()
+# Statistical Learning [Currently on Assignment 3]
 
 ## Resources
 
+#### R Programming
 - [TryR R syntax/logic mini tutorial series](http://tryr.codeschool.com/)
 - [Tutorial on for loops in R](https://datascienceplus.com/how-to-write-the-loop-in-r/)
+
+#### Probability (Mostly for assignment 3)
 - [Wikipedia Article on Joint probability distributions for question 3](https://en.wikipedia.org/wiki/Joint_probability_distribution)
+
+##### General stats (Mostly for assignment 4)
+-[Expected value of variance and mean proof](https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading5a.pdf)
