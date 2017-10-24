@@ -1,4 +1,4 @@
-# Statistical Learning [Currently on Assignment 3]
+# :pencil2: Statistical Learning :pencil2:
 
 ## Resources
 
