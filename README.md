@@ -17,9 +17,9 @@
 ## Assignments
 
 #### Markdowns Assignment 2
-- [Question 2]()
-- [Question 3]()
-- [Question 4]()
+- [Question 2](https://addyvan.github.io/Statistical-Learning/A2Q2.html)
+- [Question 3](https://addyvan.github.io/Statistical-Learning/A2Q3.html)
+- [Question 4](https://addyvan.github.io/Statistical-Learning/A2Q4.html)
 
 #### Markdowns Assignment 3
-- [Entire Assignment *In progress*]()
+- [Entire Assignment *In progress*](https://addyvan.github.io/Statistical-Learning/A3.html)
