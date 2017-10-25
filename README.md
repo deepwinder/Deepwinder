@@ -16,10 +16,12 @@
 
 ## Assignments
 
-#### Markdowns Assignment 2
+Markdowns are just a way to lay out a page like html or pdf, word etc... R however has a good feature linked in with RStudio called R markdown that allows you to display your code in much prettier / easier to read ways ! I added links to the html output from the markdown files below. 
+
+#### Rendered markdowns Assignment 2
 - [Question 2](http://htmlpreview.github.io/?https://github.com/Addyvan/Statistical-Learning/blob/master/A2Q2.html)
 - [Question 3](http://htmlpreview.github.io/?https://github.com/Addyvan/Statistical-Learning/blob/master/A2Q3.html)
 - [Question 4](http://htmlpreview.github.io/?https://github.com/Addyvan/Statistical-Learning/blob/master/A2Q4.html)
 
-#### Markdowns Assignment 3
+#### Rendered markdowns Assignment 3
 - [Entire Assignment *In progress*](http://htmlpreview.github.io/?https://github.com/Addyvan/Statistical-Learning/blob/master/A3.html)
