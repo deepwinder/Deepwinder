@@ -1,0 +1,7 @@
+"0","probability_joe_and_mary <- function(n, m, k) {"
+"0","  p_joe_and_mary <- 0"
+"0","  for(i in 0:k) {"
+"0","    p_joe_and_mary <- p_joe_and_mary + find_prob(successes=i, number_balls=n, draws=k)*find_prob(successes=i, number_balls=m, draws=k)"
+"0","  }"
+"0","  return(p_joe_and_mary)"
+"0","}"

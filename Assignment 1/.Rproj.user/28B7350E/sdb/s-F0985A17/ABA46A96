@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "library(tidyr)\n# Import data\ndf <- read_csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\n# format is [row,column] where both row and column can be sliced with [:,:]\n\n# only first two rows all columns\n#df <- df[0:2,]\n\ndf <- df[df[, \"Ozone\"] > 31,]\nView(df)\nsummary(df[,])",
+    "created" : 1506102611702.000,
+    "dirty" : true,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "930383733",
+    "id" : "ABA46A96",
+    "lastKnownWriteTime" : 1506177676,
+    "last_content_update" : 1506303896226,
+    "path" : "C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/A1 script.R",
+    "project_path" : "A1 script.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

@@ -1,0 +1,268 @@
+---
+title: "Question 3"
+author: "Addison van den Hoeven, Mona Philippon, Deepwinder Singh"
+date: "October 18, 2017"
+output:
+  prettydoc::html_pretty:
+  theme: cayman
+  highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Question at hand
+
+Suppose that Joe draws $k$ balls from an urn containing $n$ red balls and $n$ green balls, \emph{without replacing the balls after they are drawn}. Similarly, Mary draws $k$ balls from an urn containing $m$ red balls and $m$ green balls, without replacing the balls after they are drawn. 
+
+We want to compute the probability that Joe and Mary will draw the the same number of red balls.
+
+
+### Finding the probability of either Joe or Mary
+
+Let $x$ be the number of red balls drawn/successes, $k$ be the total number of balls drawn, and $2n$, $n_{r}$, and $n_{g}$ be the number of balls total, the number of red balls, and the number of green balls in the urn respectively.
+
+It can be said that an inividual outcome $x$ can hold values $\Omega = \{0,1, ... , k\}$ and the probability of an individual outcome $x$ for $k=1$ is ${k\choose x} \cdot (P_{red})^x \cdot (P_{green})^{k-x}$ where $P_{red} = \frac{n_{r}}{(n_{r} + n_{g})}$ and $P_{green} = \frac{n_{g}}{(n_{r} + n_{g})}$.
+
+Generalizing this for $k = \{1,2, ..., n\}$ gives us the following: 
+
+$P_{X}(X=x) = {k\choose x} \cdot \displaystyle\prod_{i=0}^{x-1}(\frac{n_{r} - i}{n_{r} - i + n_{g}}) \cdot \displaystyle\prod_{i=0}^{k-x-1} (\frac{n_{g}-1}{n_{r} - x + n_{g} - i})$
+
+Thus, our procedure is as follows for calculating the probabilities for Joe \emph{or} Mary:
+
+* Find the probability of a single occurence of an event.
+* Calculate its product.
+* Weight the product according to how often the event occurs. In this case this value follows $\frac{{k\choose x}}{2^k}$.
+
+Note: the variable $n$ can be thought of as changed to $m$ when calculating probabilities for Mary.
+
+Below is the function used to find the probability of Joe or Mary.
+
+```{r}
+
+# Inputs are succeses (x), number of balls (n), and draws (k)
+find_prob <- function(successes, number_balls, draws) {
+  
+  #variables for both red and green balls
+  reds <- number_balls
+  greens <- number_balls
+  
+  #index for appending in R (it seems there is no .append() function in R like in python...)
+  index <- 1
+  
+  #variable to track how many reds have been drawn so far
+  red_success <- 0
+  
+  #vector to track the products
+  product_vector <- c()
+  
+  # This loop runs k times. 
+  for(i in 1:draws) {
+    if(red_success < successes) {
+      product_vector[i] <- reds/(reds + greens)
+      red_success <- red_success + 1
+      reds <- reds - 1
+      if(reds == 0) {
+        print("No more reds, result should be 0.")
+      }
+    }else {
+      product_vector[i] <- greens/(reds + greens)
+      greens <- greens - 1
+      if(greens == 0) {
+        print("No more greens, result should be 0.")
+      }
+    }
+  }
+  #multiply the product of the occurences by the number of possible events that create the product.
+  prob <- prod(product_vector)*choose(draws,successes)
+  return(prob)
+}
+
+```
+
+### Calculating the probability of Joe and Mary
+
+To calculate the probability of Joe and Mary drawing the same number of red balls we must calculate $P_{XY}(X=Y)$ or $P_{XY}(X=r, Y=r) = P_{X}(X=r) \cdot P_{Y}(Y=r|X=r)$ and since the events are independant as neither individual drawing from their own urn affects the other urn, we can assume the following: 
+
+$P_{XY}(X=r, Y=r) = P_{x}(X=r) \cdot P_{Y}(Y=r)$
+
+This equation is now quite simple to calculate. In the discrete setting given $P_{XY}(X=r, Y=r)$ is simply:
+
+$P_{XY}(X=r, Y=r) = \sum\limits_{i=0}^k P_{x}(X=i) \cdot P_{Y}(Y=i)$
+
+Below is the function that utilizes the above function and logic along with the equation directly above to find the probaility of Joe and Mary taking the same value.
+
+```{r}
+
+probability_joe_and_mary <- function(n, m, k) {
+  p_joe_and_mary <- 0
+  for(i in 0:k) {
+    p_joe_and_mary <- p_joe_and_mary + find_prob(successes=i, number_balls=n, draws=k)*find_prob(successes=i, number_balls=m, draws=k)
+  }
+  return(p_joe_and_mary)
+}
+```
+
+#### b) Testing the function at varying values
+
+$n = 20$, $m = 30$, $k = 1$
+
+```{r}
+
+probability_joe_and_mary(n=20, m=30, k=1)
+
+```
+
+$n = 20$, $m = 30$, $k = 2$
+
+```{r}
+
+probability_joe_and_mary(n=20, m=30, k=2)
+
+```
+
+$n = 200$, $m = 300$, $k = 2$
+
+```{r}
+
+probability_joe_and_mary(n=200, m=300, k=2)
+
+```
+
+$n = 2000$, $m = 3000$, $k = 2$
+
+```{r}
+
+probability_joe_and_mary(n=2000, m=3000, k=2)
+
+```
+
+$n = 50$, $m = 60$, $k = 17$
+
+```{r}
+
+probability_joe_and_mary(n=50, m=60, k=17)
+
+```
+
+#### c) Comments on the results
+
+It seems as though as $k$ increases, the probabilities decrease. This makes sense as as $k$ increase, so does the number of possible occurences and the number of possible paths to each occurence (naturally this doesn't apply to all reds or all greens). On my end, computation time increases drastically with $k$ as I have chosen to solve the problem algorithmictly rather than purely matheatically.
+
+#### d) Try the function you wrote above with n = 600, m = 500, and k = 400. You should see a result of NaN.
+
+In the case of my solution, I am able to get a numerical result for $n = 600$, $m = 500$, and $k = 400$. This is because rather than solving my problem using combinatorics result in equations in the form of:
+
+$P_{X}(X=x) =  \frac{{n\choose x}{m\choose n + m - x}}{{n+m\choose k}}$
+
+I solved the problem using loops and much smaller numbers.
+
+Calculation for $n = 600$, $m = 500$, and $k = 400$
+
+```{r}
+probability_joe_and_mary(n=600, m=500, k=400)
+```
+
+Attempting to use the function for $n = 6000$, $m = 5000$, and $k = 4000$ takes over 5 minutes and yields NaN.
+
+Thus, we must transform:
+
+$P_{X}(X=x) = {k\choose x} \cdot \displaystyle\prod_{i=0}^{x-1}(\frac{n_{r} - i}{n_{r} - i + n_{g}}) \cdot \displaystyle\prod_{i=0}^{k-x-1} (\frac{n_{g}-1}{n_{r} - x + n_{g} - i})$
+
+into
+
+$\ln P_{X}(X=x) = \ln({k\choose x} \cdot \displaystyle\prod_{i=0}^{x-1}(\frac{n_{r} - i}{n_{r} - i + n_{g}}) \cdot \displaystyle\prod_{i=0}^{k-x-1} (\frac{n_{g}-1}{n_{r} - x + n_{g} - i}))$
+
+$\ln P_{X}(X=x) = \ln {k\choose x} + \ln(\displaystyle\prod_{i=0}^{x-1}(\frac{n_{r} - i}{n_{r} - i + n_{g}})) + \ln(\displaystyle\prod_{i=0}^{k-x-1} (\frac{n_{g}-1}{n_{r} - x + n_{g} - i}))$
+
+$\ln P_{X}(X=x) = \ln {k\choose x} + (\displaystyle\sum_{i=0}^{x-1}\ln(\frac{n_{r} - i}{n_{r} - i + n_{g}})) + (\displaystyle\sum_{i=0}^{k-x-1} \ln(\frac{n_{g}-1}{n_{r} - x + n_{g} - i}))$
+
+```{r}
+
+# Inputs are succeses (x), number of balls (n), and draws (k)
+find_prob_log <- function(successes, number_balls, draws) {
+  
+  #variables for both red and green balls
+  reds <- number_balls
+  greens <- number_balls
+  
+  #index for appending in R (it seems there is no .append() function in R like in python...)
+  index <- 1
+  
+  #variable to track how many reds have been drawn so far
+  red_success <- 0
+  
+  #vector to track the products
+  product_vector <- c()
+  
+  # This loop runs k times. 
+  for(i in 1:draws) {
+    if(red_success < successes) {
+      product_vector[i] <- log(reds) - log(reds + greens)
+      red_success <- red_success + 1
+      reds <- reds - 1
+      if(reds == 0) {
+        print("No more reds, result should be 0.")
+      }
+    }else {
+      product_vector[i] <- log(greens) - log(reds + greens)
+      greens <- greens - 1
+      if(greens == 0) {
+        print("No more greens, result should be 0.")
+      }
+    }
+  }
+  #multiply the product of the occurences by the number of possible events that create the product.
+  prob <- sum(product_vector) + (lfactorial(draws) - lfactorial(successes) - lfactorial(draws-successes))
+  return(prob)
+}
+
+
+probability_joe_and_mary_log <- function(n, m, k) {
+  p_joe_and_mary <- 0
+  for(i in 0:k) {
+    p_joe_and_mary <- p_joe_and_mary + exp(find_prob_log(successes=i, number_balls=n, draws=k) + find_prob_log(successes=i, number_balls=m, draws=k))
+  }
+  return(p_joe_and_mary)
+}
+
+
+```
+
+Testing the find_prob_log function:
+
+
+```{r}
+
+for(i in 0:2) {
+  print("log func")
+  print(find_prob(successes=i, number_balls=20, draws=2))
+  print("reg func")
+  print(exp(find_prob_log(successes=i, number_balls=20, draws=2)))
+}
+
+```
+
+Testing the probability_joe_and_mary_log function:
+
+```{r}
+
+for(i in 0:2) {
+  print("log func")
+  print(probability_joe_and_mary(n=20, m=20, k=i))
+  print("reg func")
+  print(probability_joe_and_mary_log(n=20, m=20, k=i))
+}
+
+```
+
+Now we know our functions return the same values. we can compute:
+
+$n = 6000$, $m = 5000$, and $k = 4000$
+
+```{r}
+
+probability_joe_and_mary_log(n=6000,m=5000,k=4000)
+
+```

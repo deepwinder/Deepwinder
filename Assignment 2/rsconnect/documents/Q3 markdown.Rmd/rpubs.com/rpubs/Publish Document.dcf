@@ -1,0 +1,10 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/319966/0abae132536b4e1bb822b1d6a421b26b
+bundleId: https://api.rpubs.com/api/v1/document/319966/0abae132536b4e1bb822b1d6a421b26b
+url: http://rpubs.com/Addyvan/319966
+when: 1508365697.69465
