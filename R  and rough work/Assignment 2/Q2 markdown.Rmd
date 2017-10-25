@@ -12,16 +12,102 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-#### a) Calculate probability that a normal random variable with mean 22 and variance 25:
+#### a) Calculate probability that a normal random variable with mean 22 and variance 25
+
+$\sigma = \sqrt{25} = 5$
+$\mu = 22$
+
+```{r}
+sigma<- sqrt(25) 
+u <- 22
+```
+
+i. lies between 16.2 and 27.5
 
 ```{r}
 
+pnorm(27.5, mean=u, sd=sigma) - pnorm(16.2, mean=u, sd=sigma)
+
 ```
 
-
+ii. is greater than 29
 
 ```{r}
 
+1-pnorm(29, mean=u, sd=sigma)
+
 ```
 
+iii. is less than 17
 
+```{r}
+
+pnorm(17, mean=u, sd=sigma)
+
+```
+
+iv. is less than 15 or greater than 25
+
+```{r}
+
+(1-pnorm(25, mean=u, sd=sigma)) + pnorm(15, mean=u, sd=sigma)
+
+```
+
+#### b) Probability that in 60 tosses of a fair coin the head comes up
+
+$P(X=k) = {n\choose k} \cdot p^kq^{n-k}$
+
+$p=0.5$ and $q=0.5$
+
+i. 20, 25 or 30 times
+
+```{r}
+
+dbinom(20, size=60, prob=0.5) + dbinom(25, size=60, prob=0.5) + dbinom(30, size=60, prob=0.5)
+
+```
+
+ii. less than 20 times
+
+```{r}
+
+pbinom(20, size=60, prob=0.5)
+
+```
+
+iii. between 20 and 30 times
+
+```{r}
+
+pbinom(30, size=60, prob=0.5) - pbinom(20, size=60, prob=0.5)
+
+```
+
+#### c) A random variable X has Poisson distribution with mean 7. Find the probability that
+
+$P\left( x \right) = \frac{{e^{ - \lambda } \lambda ^x }}{{x!}}$
+
+i. X is less than 5
+
+```{r}
+
+ppois(5, lambda=7)
+
+```
+
+ii. X is greater than 10 (strictly)
+
+```{r}
+
+1 - ppois(10, lambda=7)
+
+```
+
+iii. X is between 4 and 16
+
+```{r}
+
+ppois(16, lambda=7) - ppois(4, lambda=7)
+
+```

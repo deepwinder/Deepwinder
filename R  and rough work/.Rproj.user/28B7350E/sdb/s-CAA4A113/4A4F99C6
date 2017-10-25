@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Question 4\"\nauthor: \"Addison van den Hoeven, Mona Philippon, Deepwinder Singh\"\ndate: \"October 18, 2017\"\noutput:\n  prettydoc::html_pretty:\n  theme: cayman\n  highlight: github\n---\n\n```{r setup, include=FALSE}\nknitr::opts_chunk$set(echo = TRUE)\n```\n\n### Question\n\nYou roll a fair six-sided die 100 times. Let X be the random variable that is the number of these rolls that show 1, 2, or 3. You then roll the die another 100 times.Let Y be the random variable that is the number of these rolls that show 1 or 2. With simple calculations in R, using the dbinom and pbinom functions, find the following:\n\n$\\Omega = \\{1,2,3,4,5,6 \\}$\n$X = \\{1,2,3\\}$\n$Y = \\{1,2\\}$\n\nAssuming that P(Z) refers to the probability of any number to appear k times after 100 rolls gives us:\n$P(Z=k) = {100 \\choose k} \\frac{1}{6}^k \\frac{5}{6}^{100-k}$\n\nThus,\n\n$P(X=k) = {100 \\choose k} \\frac{3}{6}^k \\frac{3}{6}^{100-k}$\n\nand\n\n$P(Y=k) = {100 \\choose k} \\frac{2}{6}^k \\frac{4}{6}^{100-k}$\n\nWe can use the above to answer the following:\n\na) $P(X \\leq 60)$\n\n$P(X \\leq 60) = \\sum\\limits_{i=0}^{60} P(X = i)$\n\n```{r}\nprint(\"Probability using R function:\")\npbinom(60, size=100, prob=0.5)\n\n#or\n\nprob_using_sum <- 0\nfor(i in 0:60) {\n  prob_using_sum <- prob_using_sum + (choose(100,i)*((3/6)^i)*((3/6)^(100-i)))\n}\nprint(\"Probability by summing:\")\nprob_using_sum\n\n```\n\nb) $P(Y \\geq 60)$\n```{r}\n\n1 - pbinom(60, size=100, prob=(2/6))\n\n```\n\nc) $P(X = Y) = P(X) \\bigcap P(Y)$\n\nNote: Events are independent so $P(X) \\bigcap P(Y) = P(X)*P(Y|X) = P(X)*P(Y)$\n\nand\n\n$P(X=k, Y=k) = \\sum\\limits_{k=0}^{100} P_{x}(X=k) \\cdot P_{Y}(Y=k)$\n\n$P(X=Y) = \\sum\\limits_{i=0}^{100} ({100 \\choose k} \\frac{3}{6}^i \\frac{3}{6}^{100-i})({100 \\choose i} \\frac{2}{6}^i \\frac{4}{6}^{100-i})$\n```{r}\n\nprob_x_and_y <- 0\nfor(i in 0:100) {\n  prob_x_and_y <- prob_x_and_y + (choose(100,i)*((3/6)^i)*((3/6)^(100-i)))*(choose(100,i)*((2/6)^i)*((4/6)^(100-i)))\n}\nprob_x_and_y\n\n```\n\nd) $P(X > Y)$\n\nIf we think of the event space for $P_{XY}$ as a 101x101 matrix, the probability that X and Y are equal can be found by summing the probabilities along the diagonal. Similarily the probability of $X>Y$ can be found in the same matrix by summing all the probabilities of events that result in more Xs then Ys. We can expect this number to be much bigger than $P_{XY}(X=Y)$.\n\n$P_{XY}(X>Y) = \\sum\\limits_{i=0}^{100} \\sum\\limits_{j<i}^{100} ({100 \\choose k} \\frac{3}{6}^i \\frac{3}{6}^{100-i})({100 \\choose j} \\frac{2}{6}^j \\frac{4}{6}^{100-j})$\n\n```{r}\nprob_x_greater_y <- 0\nfor(i in 0:100) {\n  for(j in 0:100) {\n    if(j < i) {\n      prob_x_greater_y <- prob_x_greater_y + (choose(100,i)*((3/6)^i)*((3/6)^(100-i)))*(choose(100,j)*((2/6)^j)*((4/6)^(100-j)))\n    }\n  }\n}\nprob_x_greater_y\n\n```",
+    "created" : 1508946300632.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2337154491",
+    "id" : "4A4F99C6",
+    "lastKnownWriteTime" : 1508946553,
+    "last_content_update" : 1508946553010,
+    "path" : "C:/Users/Addy/Desktop/Statistical Learning R/Statistical-Learning/R  and rough work/Assignment 2/Q4 markdown.Rmd",
+    "project_path" : "Assignment 2/Q4 markdown.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}
