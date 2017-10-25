@@ -1,3 +1,7 @@
+---
+title: Document Center
+---
+
 # :pencil2: Statistical Learning :pencil2:
 
 ## Resources
