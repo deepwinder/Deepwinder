@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#library(tidyr)\n\n\n#Question 1:\n\n# Import data\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\nView(df)\n\n#Question 2:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\ndf <- df[0:2,]\nView(df)\n\n#Question 3:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\nprint(nrow(df))\n\n#Question 4:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\ndf <- df[(nrow(df)-1):nrow(df),]\nView(df)\n\n#Question 5:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\ndf[47,1]\nView(df)\n\n#Question 6:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\nprint(sum(is.na(df)))\n\n#Question 7:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\nsummary(df)\n\n#Question 8:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\ndf <- df[df[, \"Temp\"] > 90,]\ndf <- df[df[, \"Ozone\"] > 31,]\n\nsummary(df)\n\n#Question 9:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\ndf <- df[df[, \"Month\"] == 6,]\nsummary(df[,\"Temp\"])\n\n#Question 10:\n\ndf <- read.csv(\"C:/Users/Addy/Desktop/Statistical Learning R/Assignment 1/data.csv\")\n\ndf <- df[df[, \"Month\"] == 5,]\nsummary(df[,\"Ozone\"])\n\n\n\n\n",
+    "created" : 1507224488386.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1739106664",
+    "id" : "672C9E11",
+    "lastKnownWriteTime" : 1507224417,
+    "last_content_update" : 1507224417,
+    "path" : "C:/Users/Addy/Desktop/Statistical Learning R/Statistical-Learning-A-2/Question 1.R",
+    "project_path" : "Question 1.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

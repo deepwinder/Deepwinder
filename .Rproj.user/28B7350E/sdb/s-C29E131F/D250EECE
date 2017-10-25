@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "# Question 3\n\n# Joe draws k balls from an urn containing n red balls and n green balls\n# Mary draws k balls from an urn containing m red balls and m green balls\n# For both cases, the balls are not replaced after they are drawn.\n#\n# We want to compute the probability that Joe and Mary will draw the same # of red balls.\n\n\n\n# Main Function \nmyFunction <- function(n, m, k) {\n  # Requirements for inputs to function. \n  if((n < 0) | (m < 0) | (k < 0) | (2*n < k) | (2*m < k)) {\n    return(FALSE)\n  }\n  # Assuming inputs are valid:\n  \n\n  \n  return(p_j_int_m)\n}\n\nsample_space <- function(n,k) {\n  l <- list()\n  \n}",
+    "created" : 1507224498396.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "939641968",
+    "id" : "D250EECE",
+    "lastKnownWriteTime" : 1507233735,
+    "last_content_update" : 1507233735652,
+    "path" : "C:/Users/Addy/Desktop/Statistical Learning R/Statistical-Learning-A-2/Question 3.R",
+    "project_path" : "Question 3.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

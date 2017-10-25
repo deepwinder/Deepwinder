@@ -1,0 +1,27 @@
+---
+title: "Question 2"
+author: "Addison van den Hoeven, Mona Philippon, Deepwinder Singh"
+date: "October 18, 2017"
+output:
+  prettydoc::html_pretty:
+  theme: cayman
+  highlight: github
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### a) Calculate probability that a normal random variable with mean 22 and variance 25:
+
+```{r}
+
+```
+
+
+
+```{r}
+
+```
+
+
