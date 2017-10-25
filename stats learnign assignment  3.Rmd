@@ -2,7 +2,10 @@
 title: "Assignment 3"
 author: "--"
 date: "October 24, 2017"
-output: html_document
+output: 
+  prettydoc::html_pretty:
+  theme: cayman
+  highlight: github
 ---
 
 ```{r setup, include=FALSE}
