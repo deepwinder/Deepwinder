@@ -83,11 +83,160 @@ The corresponding probability for $Z=2.236$ is $(1-\alpha) = 0.01257$. Therefore
 
 ## Question 4
 
-#### a) 
+#### a) Finding the distribution
+
+Just as a side note, CLT is commonly seen as effective when $n \geq 30$. Thus, in our case, finding the distribution using CLT should be an accurate estimation of the true distribution.
+
+When rolling a dice the probability of any outcome $\Omega = \{1,2,3,4,5,6\}$ is $\frac{1}{6}$. We can also see each single event as distributed as a binomial with probability $\frac{1}{6}$. Thus:
+
+$\mu_{X} = E(X) = (0)(1-p) + (1)p = p$
+
+$\sigma_{X}^2 = E((X-\mu_{X})^2) = E((X-p)^2) = p(1-p) = \frac{5}{36}$
+
+and $\bar{X}$ is a random variable with:
+
+$\mu_{\bar{X}} = np$
+
+$\sigma^2_{\bar{X}} = np(1-p)$
+
+Note the variance is as such only because $X_1,X_2, ... ,X_{30}$ are iie.
+
+Thus we can assume the distribution of $\bar_{X}$ to be as follows:
+
+$\bar{X} \sim N(\mu_{\bar{X}}, \sigma_{\bar{X}})$
+
+From here we can easily perform the Z transformation.
+
+$\bar{X} \sim N(\frac{\mu_{\bar{X}} - np}{\sigma_{\bar{X}}}, \frac{\sigma_{\bar{X}}}{\sigma_{\bar{X}}})$
+
+$\bar{X} \sim N(0, 1)$
 
 #### b)
 
 The plot for the above distributution is as follows:
+
 ```{r}
+n <- 30
+p <- (1/6)
+std <- sqrt(n*p*(1-p))
+mu <- (n*p)
+
+x <- seq(-4*std + mu, 4*std + mu, length=100)
+hx <- dnorm(x, mean=mu, sd=std)
+
+plot(x, hx, type="l", lty=2, xlab="X bar values",
+     ylab="Density", main="Distribution of the Frequency of a single die roll", xlim=c(-5,15))
 
 ```
+
+If we would like to plot the distribution for $\bar_{X}$, we can do the following:
+
+$\mu_{\bar{X}} = E(\bar{X}) = \frac{\sum\limits^{30}_{i=1} (\frac{1}{6}1 + \frac{1}{6}2 + \frac{1}{6}3 + \frac{1}{6}4 + \frac{1}{6}5 + \frac{1}{6}6)}{30} = 3.33$
+
+$E(\sigma^2_\bar{X}) = E((\bar{X}- \mu_{\bar{X}})^2) = 0.73926$
+
+
+```{r}
+
+mu <- 3.33
+std <- sqrt(0.73926)
+
+x <- seq(-4*std + mu, 4*std + mu, length=100)
+hx <- dnorm(x, mean=mu, sd=std)
+
+plot(x, hx, type="l", lty=2, xlab="X bar values",
+     ylab="Density", main="Distribution of the Frequency of a single die roll", xlim=c(-5,15))
+
+```
+
+#### c)
+
+
+
+```{r}
+thousand_samples <- c()
+for(k in 1:100) {
+  one_set <- c()
+  for(i in 1:30) {
+    one_set[i] <- sample(1:6, size=1, replace = TRUE, prob = NULL)
+  }
+  thousand_samples[k] <- mean(one_set)
+}
+
+
+hist(thousand_samples, lty=2, xlab="X bar values",
+     ylab="Density", main="Distribution of X bar", xlim=c(30/n, 180/n))
+
+```
+
+#### d) 
+
+In order to plot the functions on the same axis we need to plot the frequencies of occurences as opposed to the value of $\bar{X}$.
+
+
+
+```{r}
+
+par(mfrow=c(1,1))
+
+# Using CLT
+mu <- 3.33
+std <- sqrt(0.73926)
+
+x <- seq(-4*std + mu, 4*std + mu, length=1000)
+hx <- dnorm(x, mean=mu, sd=std)
+
+
+#Random Experiments
+thousand_samples <- c()
+for(k in 1:100) {
+  one_set <- c()
+  for(i in 1:30) {
+    one_set[i] <- sample(1:6, size=1, replace = TRUE, prob = NULL)
+  }
+  thousand_samples[k] <- mean(one_set)
+}
+
+
+hist(thousand_samples, lty=2, xlab="X bar values",
+     ylab="Density", main="Distribution of X bar", xlim=c(30/n, 180/n),freq = FALSE)
+
+
+lines(x, hx, type="l", lty=2, xlab="X bar values",
+     ylab="Density", main="Distribution of the Frequency of a single die roll", xlim=c(-5,15))
+
+```
+
+# Question 5
+
+#### a)
+
+$P(V_1 < -1.456)$
+
+```{r}
+
+pnorm(-1.456, mean=0, sd=1)
+
+```
+
+#### b)
+
+$P(V_2 < 2.155)$
+
+```{r}
+
+1 - pt(2.155, df=14)
+
+```
+
+#### c)
+
+$P(V_3 > 11.98)$
+
+```{r}
+
+pchisq(11.98, df=14)
+
+```
+
+

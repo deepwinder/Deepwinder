@@ -1,7 +1,3 @@
----
-title: Document Center
----
-
 # :pencil2: Statistical Learning :pencil2:
 
 ## Resources
@@ -16,14 +12,17 @@ title: Document Center
 ##### General stats (Mostly for assignment 3)
 - [For question 2: Expected value of variance and mean proof](https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading5a.pdf)
 - [For question 3: Using central limit theorem and ideas from question 2 to find approx probability](https://math.stackexchange.com/questions/86071/how-can-i-find-a-probability-given-just-mean-and-variance-or-do-i-need-to-use-a)
+- [For question 4: A pdf on central limit theorem (kinda meaty)](https://www.dartmouth.edu/~chance/teaching_aids/books_articles/probability_book/Chapter9.pdf)
 
 
 ## Assignments
 
-#### Markdowns Assignment 2
-- [Question 2](https://addyvan.github.io/Statistical-Learning/A2Q2.html)
-- [Question 3](https://addyvan.github.io/Statistical-Learning/A2Q3.html)
-- [Question 4](https://addyvan.github.io/Statistical-Learning/A2Q4.html)
+Markdowns are just a way to lay out a page like html or pdf, word etc... R however has a good feature linked in with RStudio called R markdown that allows you to display your code in much prettier / easier to read ways ! I added links to the html output from the markdown files below. 
 
-#### Markdowns Assignment 3
-- [Entire Assignment *In progress*](https://addyvan.github.io/Statistical-Learning/A3.html)
+#### Rendered markdowns Assignment 2
+- [Question 2](http://rpubs.com/Addyvan/322530)
+- [Question 3](http://rpubs.com/Addyvan/example_markdown)
+- [Question 4](http://rpubs.com/Addyvan/319960)
+
+#### Rendered markdowns Assignment 3
+- [Entire Assignment *In progress*](http://rpubs.com/Addyvan/322528)
