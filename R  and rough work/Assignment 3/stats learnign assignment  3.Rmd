@@ -63,7 +63,7 @@ $SD(2X - Y + 5) = 5.291503 \approx 5.29$
 
 ## Question 3
 
-$\mu_{x} = \frac{1}{3}$, $\sigma^2_X=\frac{1}{18}$
+$\mu_{x} = \frac{2}{3}$, $\sigma^2_X=\frac{1}{18}$
 
 We are assuming that $X_{1}, X_{2}, ...,X_{n}$ are iie (independent and identically distributed).
 
@@ -73,7 +73,7 @@ $E(T) = E(\sum\limits^{90}_{i=1} X_{i}) = \sum\limits^{90}_{i=1} X = nX = 60$
 
 $VAR(T) = \sum\limits^{90}_{i=1} VAR(X) = \frac{90}{18} = 5$
 
-By central limit theorem, T will be distributed $~N(60, \sqrt{5})$
+By central limit theorem, T will be distributed $~N(60, 5)$
 
 Now, if we would like to find $P(T>65)$ we can use the standard normal distribtuion to easily find an approximate probability.
 
@@ -138,14 +138,18 @@ $E(\sigma^2_\bar{X}) = E((\bar{X}- \mu_{\bar{X}})^2) = 0.73926$
 
 ```{r}
 
-mu <- 3.33
-std <- sqrt(0.73926)
+mu <- 3.5
+std <- sqrt(2.916667)/sqrt(30)
 
 x <- seq(-4*std + mu, 4*std + mu, length=100)
 hx <- dnorm(x, mean=mu, sd=std)
 
+
 plot(x, hx, type="l", lty=2, xlab="X bar values",
-     ylab="Density", main="Distribution of the Frequency of a single die roll", xlim=c(-5,15))
+     ylab="Density", main="Distribution of x bar", xlim=c(1,6))
+
+abline(v=3.5) #line at the mean
+
 
 ```
 
@@ -176,12 +180,12 @@ In order to plot the functions on the same axis we need to plot the frequencies 
 
 
 ```{r}
-
+set.seed(1)
 par(mfrow=c(1,1))
 
 # Using CLT
-mu <- 3.33
-std <- sqrt(0.73926)
+mu <- 3.5
+std <- sqrt(2.916667)/sqrt(30)
 
 x <- seq(-4*std + mu, 4*std + mu, length=1000)
 hx <- dnorm(x, mean=mu, sd=std)
@@ -189,7 +193,7 @@ hx <- dnorm(x, mean=mu, sd=std)
 
 #Random Experiments
 thousand_samples <- c()
-for(k in 1:100) {
+for(k in 1:1000) {
   one_set <- c()
   for(i in 1:30) {
     one_set[i] <- sample(1:6, size=1, replace = TRUE, prob = NULL)
@@ -203,7 +207,7 @@ hist(thousand_samples, lty=2, xlab="X bar values",
 
 
 lines(x, hx, type="l", lty=2, xlab="X bar values",
-     ylab="Density", main="Distribution of the Frequency of a single die roll", xlim=c(-5,15))
+     ylab="Density", main="Distribution of the Frequency of a single die roll", xlim=c(1,6))
 
 ```
 
@@ -238,5 +242,9 @@ $P(V_3 > 11.98)$
 pchisq(11.98, df=14)
 
 ```
+```{r}
 
+
+
+```
 
